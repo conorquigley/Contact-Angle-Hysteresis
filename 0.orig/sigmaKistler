@@ -1,0 +1,52 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      sigmaKistler;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [1 0 -2 0 0 0 0];  // N/m
+
+internalField   uniform 0.072;      // surface tension for water-air [N/m]
+
+boundaryField
+{
+    axis
+    {
+        type            empty;
+    }
+
+    bottom
+    {
+        type            fixedValue;
+        value           uniform 0.072;
+    }
+
+    sidewall
+    {
+        type            zeroGradient;
+    }
+
+    atmosphere
+    {
+        type            zeroGradient;
+    }
+
+    front
+    {
+        type            wedge;
+    }
+
+    back
+    {
+        type            wedge;
+    }
+}
+
+// ************************************************************************* //
+
+

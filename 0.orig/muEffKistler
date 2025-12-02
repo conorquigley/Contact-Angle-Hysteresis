@@ -1,0 +1,56 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      muEffKistler;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [1 -1 -1 0 0 0 0];  // kg/(m·s)
+
+internalField   uniform 1e-3;        // initial guess: water viscosity
+
+boundaryField
+{
+    axis
+    {
+        type            empty;
+    }
+
+    bottom
+    {
+        type            fixedValue;
+        value           uniform 1e-3;  // temporary, will be updated in run-time
+    }
+
+    sidewall
+    {
+        type            zeroGradient;
+    }
+
+    atmosphere
+    {
+        type            zeroGradient;
+    }
+
+    front
+    {
+        type            wedge;
+    }
+
+    back
+    {
+        type            wedge;
+    }
+}
+
+// ************************************************************************* //
+

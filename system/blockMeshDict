@@ -1,0 +1,92 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.0.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+//R_0 = 1mm
+//D_0 = 2mm
+
+//Lx = W*cos(theta/2)
+//Ly = W*sin(theta/2)
+
+convertToMeters 0.001;
+
+vertices
+(
+(0  0.1  0)       //0
+(4  0.1  0)       //1
+(4  0.1  4)       //2
+(0  0.1  4)       //3
+(0  0  0)    //4
+(4  0  0)    //5
+(4  0  4)    //6
+(0  0  4)    //7
+);
+
+//with Cn = eps/D_0, eps = 1/2*h
+//Nx=Lx/h
+blocks
+(
+  //(4mm x 4mm)
+  hex (4 5 1 0 7 6 2 3) (60 1 60)
+  simpleGrading (1 1 1)
+);
+
+edges
+(
+);
+
+patches
+(
+    // wedge front
+    patch front
+    (
+        (0 3 2 1)
+    )
+
+    // wedge back
+    patch back
+    (
+        (4 5 6 7)
+    )
+
+    // sidewall
+    patch sidewall
+    (
+        (1 5 6 2)
+    )
+
+    // bottom
+    patch bottom
+    (
+        (0 1 5 4)
+    )
+
+    // atmosphere
+    patch atmosphere
+    (
+        (3 2 6 7)
+    )
+
+    // symmetryPlane axis
+    patch axis
+    (
+        (0 3 7 4)
+    )
+);
+
+mergePatchPairs
+(
+);
+
+// ************************************************************************* //
