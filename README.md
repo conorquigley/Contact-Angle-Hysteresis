@@ -3,7 +3,7 @@ It uses the kistler-hoffman contact angle.
 
 Initial Conditions:
 g=0
-U = (0,0,-0.23)
+U = (0,0,-0.48)
 r = 1.25mm
 thetaA = 120 degrees
 thetaR = 65 degrees

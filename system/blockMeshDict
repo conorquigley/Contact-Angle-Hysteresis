@@ -38,7 +38,7 @@ vertices
 blocks
 (
   //(4mm x 4mm)
-  hex (4 5 1 0 7 6 2 3) (60 1 60)
+  hex (4 5 1 0 7 6 2 3) (80 1 80)
   simpleGrading (1 1 1)
 );
 
